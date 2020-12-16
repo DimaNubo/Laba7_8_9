@@ -5,9 +5,9 @@ project(${PROJECT_NAME})
 set(MyExceptionLib MyExceptionLib)
 
 
-set(List List)
-set(ListLib ListLib)
-set(ListTest ListTest)
+set(StackList StackList)
+set(StackListLib StackListLib)
+set(StackListTest StackListTest)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
 if(NOT CMAKE_BUILD_TYPE) 
@@ -18,10 +18,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MyExceptionLib)
 add_subdirectory(MyExceptionLib)
 
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ListLib)
-add_subdirectory(List)
-add_subdirectory(ListLib)
-add_subdirectory(ListTest)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackListLib)
+add_subdirectory(StackList)
+add_subdirectory(StackListLib)
+add_subdirectory(StackListTest)
 add_subdirectory(gtest)
 
 
