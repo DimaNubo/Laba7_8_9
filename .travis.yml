@@ -8,6 +8,6 @@ before_script:
 script:
   - cmake ../Laba7_8_9
   - make -j
-  - ./ListTest/ListTest
+  - ./StackListTest/StackListTest
 notifications:
   email: false
