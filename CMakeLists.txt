@@ -1,37 +1,27 @@
-cmake_minimum_required(VERSION 2.8)
+﻿cmake_minimum_required(VERSION 2.8) #Проверка версии CMake.
 
-set(PROJECT_NAME polynomial)
-project(${PROJECT_NAME})
+set(PROJECT_NAME TQueueLib) #Создаем обычную локальную переменную с именем проекта
+project(${PROJECT_NAME}) # Название проекта
 
-set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
+#Переменная с именем библиотеки
+set(main main)
+set(List List)
+set(QueueLib QueueLib)
+
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
+if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компилятора вариантов сборки
+  set(CMAKE_BUILD_TYPE Release) #Если нет то устанавливаем Release
 endif()
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/List
+${CMAKE_CURRENT_SOURCE_DIR}/QueueLib) 
+# ${CMAKE_CURRENT_SOURCE_DIR}/gtest) 
+#${CMAKE_CURRENT_SOURCE_DIR} - стандартная переменная с адресом рабочей директории
 
-set(MP2_LIBRARY "${PROJECT_NAME}")
-set(MP2_EXCEPT "EXCEPTION")
-set(MP2_TESTS   "test_${PROJECT_NAME}")
-set(MP2_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+ #Добавляем директорию с под-CMakeList-ом, и выполняем под-CMakeList
+add_subdirectory(main)
+add_subdirectory(List)
+add_subdirectory(QueueLib)
 
-include_directories("${MP2_INCLUDE}" gtest)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/exception)
-
-# BUILD
-add_subdirectory(include)
-add_subdirectory(exception)
-add_subdirectory(samples)
 add_subdirectory(gtest)
 add_subdirectory(test)
-
-# REPORT
-message( STATUS "")
-message( STATUS "General configuration for ${PROJECT_NAME}")
-message( STATUS "======================================")
-message( STATUS "")
-message( STATUS "   Configuration: ${CMAKE_BUILD_TYPE}")
-message( STATUS "")
