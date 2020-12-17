@@ -6,8 +6,8 @@ before_script:
   - mkdir ../build
   - cd ../build
 script:
-  - cmake ../Labs_3_semestr
+  - cmake ../Laba7_8_9_10
   - make -j
-  - ./ListTest/ListTest
+  - ./bin/test_polynomial
 notifications:
   email: false
