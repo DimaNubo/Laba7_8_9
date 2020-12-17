@@ -6,8 +6,8 @@ before_script:
   - mkdir ../build
   - cd ../build
 script:
-  - cmake ../Laba7_8_9_10
+  - cmake ../Laba7_8_9
   - make -j
-  - ./bin/test_polynomial
+  - ./test/test_mp8
 notifications:
   email: false
